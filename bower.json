@@ -1,0 +1,22 @@
+{
+  "name": "symfony-5-login-register",
+  "authors": [
+    "Husnija Hafuric"
+  ],
+  "description": "simple symfony app",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.6.3",
+    "parsleyjs": "^2.9.2"
+  }
+}
