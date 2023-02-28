@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post" data-parsley-validate>
+<form method="post" id="validate_form">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -24,6 +24,8 @@
                 autocomplete="email" 
                 required 
                 autofocus
+                data-parsley-type="email"
+                data-parsley-trigger="keyup"
             >
 
             <input 
@@ -34,8 +36,9 @@
                 autocomplete="current-password" 
                 placeholder="Password"
                 required
+                data-parsley-length="[6,16]"
+                data-parsley-trigger="keyup"
             >
-
             <input 
                 type="hidden" 
                 name="_csrf_token"
@@ -50,4 +53,5 @@
         </form>
     </div>
 </div>
+
 {% endblock %}

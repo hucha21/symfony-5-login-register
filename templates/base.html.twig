@@ -19,7 +19,7 @@
        {% endblock %}
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
-        
+        <script src="http://parsleyjs.org/dist/parsley.js"></script>
     </head>
     <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
             {% block header %}
@@ -42,6 +42,15 @@
                         </div>
                         <div class="flex items-center flex-shrink-0 text-white mr-6">
  Current User: {{app.user ? app.user.email : '-'}}
+                                
+                                    <a
+                                            class="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                            href="/{{app.user ? 'logout' : 'login'}}"
+                                            @click="isOpen = false">
+                                        {{app.user ? 'Logout' : 'Login'}}
+                                        
+                                    </a>
+
 </div>
                         <button
                                 @click="isOpen = !isOpen"
@@ -93,15 +102,12 @@
                                     >Bookings
                                     </a>
                                 </li>
-                                
                                 <li class="mr-3">
-                                
                                     <a
                                             class="inline-block text-white no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-                                            href="/{{app.user ? 'logout' : 'login'}}"
-                                            @click="isOpen = false">
-                                        {{app.user ? 'Logout' : 'Login'}}
-                                        
+                                            href="/register"
+                                            @click="isOpen = false"
+                                    >Register
                                     </a>
                                 </li>
                             </ul>
@@ -111,7 +117,11 @@
             {% endblock %}
 
             {% block body %}{% endblock %}
-
+<script>
+$(document).ready(function(){
+$('#validate_form').parsley() 
+});
+</script>
             {% block footer %}
                 <footer class="fixed bottom-0 left-0 z-20 w-full p-4 shadow-lg bg-blue-600 border-t border-gray-200 md:flex md:items-center md:justify-between md:p-6 ">
     <span class="text-sm text-white sm:text-center">© 2023 Husnija Hafurić. All Rights Reserved.
