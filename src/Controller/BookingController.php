@@ -27,11 +27,37 @@ class BookingController extends AbstractController
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
-
+        $user=$this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
-            $bookingRepository->save($booking, true);
+            //adding user id 
+            if($user){
+                $booking->setUserId($user->getID());
+            }
+            else
+            $booking->setUserId(0);
 
-            return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
+            //check if room is available on this date;
+            $rooms=$bookingRepository->createQueryBuilder('q')
+            ->andWhere('q.room = :val')
+            ->setParameter('val', $booking->GetRoom())
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(50)
+            ->getQuery()
+            ->getResult();
+            $free=true;
+            foreach ($rooms as $r) {
+                if($r->getBookedUntil()>$booking->GetBookedFrom()){$free=false;break;}
+            }
+            if($free == true && $booking->GetBookedFrom()<$booking->GetBookedUntil())
+            {$bookingRepository->save($booking, true);
+                return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
+               }
+               //if dates are messed up somehow
+               else if($booking->GetBookedFrom()>$booking->GetBookedUntil()){
+                $this->addFlash('error', 'Selected dates not valid');
+               }
+               else $this->addFlash('error', 'Room unavailable on selected dates!');
+
         }
 
         return $this->renderForm('booking/new.html.twig', [
@@ -46,6 +72,7 @@ class BookingController extends AbstractController
         return $this->render('booking/show.html.twig', [
             'booking' => $booking,
         ]);
+        
     }
 
     #[Route('/{id}/edit', name: 'app_booking_edit', methods: ['GET', 'POST'])]

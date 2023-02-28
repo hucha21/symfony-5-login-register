@@ -26,6 +26,9 @@ class Booking
     #[ORM\Column]
     private ?int $room = null;
 
+    #[ORM\Column]
+    private ?int $user_id = null;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,17 @@ class Booking
     public function setRoom(int $room): self
     {
         $this->room = $room;
+
+        return $this;
+    }
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

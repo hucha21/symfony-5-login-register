@@ -1,31 +1,24 @@
 {% extends 'base.html.twig' %}
   
-{% block title %}Booking: {{booking.id}}{% endblock %}
+
   
 {% block body %}
     <div class="container">
-        <h2 class="text-center mt-5 mb-3">Show Booking: {{booking.id}}</h2>
+        
         <div class="card">
             <div class="card-header">
                 <a class="btn btn-outline-info float-right" href="{{ path('app_booking_index') }}"> 
                     View All Bookings
                 </a>
-                <a class="btn btn-outline-info float-right" href="{{ path('app_booking_edit', {'id': booking.id}) }}" style="margin-right: 5px;"> 
+                <a class="btn btn-outline-info float-right" href="{{ path('app_booking_edit', {'id': 1}) }}" style="margin-right: 5px;"> 
                     Edit Booking
                 </a>
             </div>
             <div class="card-body">
-            <b class="text-muted">ID:</b>
-                <p>{{ booking.id }}</p>
-                <b class="text-muted">Description:</b>
-                <p>{{ booking.bookingDescription }}</p>
-                <b class="text-muted">Booked from:</b>
-                <p>{{ booking.bookedFrom ? booking.bookedFrom|date('d-m-Y H:i:s') : '' }}</p>
-                <b class="text-muted">Booked until:</b>
-                <p>{{ booking.bookedUntil ? booking.bookedUntil|date('d-m-Y H:i:s') : ''}}</p>
-                 <b class="text-muted">Room:</b>
-                <p>{{ booking.room }}</p>
+            <div id="presidents">Loading...</div>
             </div>
         </div>
     </div>
+    
+
 {% endblock %}

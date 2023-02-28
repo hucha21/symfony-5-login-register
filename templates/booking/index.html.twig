@@ -19,6 +19,7 @@
                 <th>Booked_from</th>
                 <th>Booked_until</th>
                 <th>Room</th>
+                <th>User ID</th>
                 <th width="240px">Action</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                 <td>{{ booking.bookedFrom ? booking.bookedFrom|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ booking.bookedUntil ? booking.bookedUntil|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ booking.room }}</td>
+                <td>{{ booking.userId }}</td>
                 <td>
                             <form method="post" action="{{ path('app_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 <a

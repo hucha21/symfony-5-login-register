@@ -3,6 +3,11 @@
 {% block title %}New Booking{% endblock %}
   
 {% block body %}
+{% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
     <div class="container">
         <h2 class="text-center mt-5 mb-3">Create Booking</h2>
         <div class="card">
