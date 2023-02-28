@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Edit Booking</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_booking_index') }}"> 
+                    View All Bookings
+                </a>
+            </div>
+            <div class="card-body">
+                {% include 'booking/_form.html.twig' with {'button_label': 'Update Booking', 'button_color': 'btn-outline-success'}  %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

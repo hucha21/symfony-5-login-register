@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Booking index{% endblock %}
+{% block body %}
+<div class="container">
+        <h2 class="text-center mt-5 mb-3">Booking</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('app_booking_new') }}"> 
+                    Create New Booking 
+                </a>
+            </div>
+            <div class="card-body">
+
+    <table class="table table-bordered"">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Booking_description</th>
+                <th>Booked_from</th>
+                <th>Booked_until</th>
+                <th>Room</th>
+                <th width="240px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.bookingDescription }}</td>
+                <td>{{ booking.bookedFrom ? booking.bookedFrom|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.bookedUntil ? booking.bookedUntil|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.room }}</td>
+                <td>
+                            <form method="post" action="{{ path('app_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('app_booking_show', {'id': booking.id}) }}">
+                                    Show
+                                </a>
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('app_booking_edit', {'id': booking.id}) }}">
+                                    Edit
+                                </a>
+  
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
