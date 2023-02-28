@@ -1,38 +1,31 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Booking{% endblock %}
-
+  
+{% block title %}Booking: {{booking.id}}{% endblock %}
+  
 {% block body %}
-    <h1>Booking</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
-            </tr>
-            <tr>
-                <th>Booking_description</th>
-                <td>{{ booking.bookingDescription }}</td>
-            </tr>
-            <tr>
-                <th>Booked_from</th>
-                <td>{{ booking.bookedFrom ? booking.bookedFrom|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Booked_until</th>
-                <td>{{ booking.bookedUntil ? booking.bookedUntil|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Room</th>
-                <td>{{ booking.room }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_booking_index') }}">back to list</a>
-
-    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
-
-    {{ include('booking/_delete_form.html.twig') }}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Show Booking: {{booking.id}}</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_booking_index') }}"> 
+                    View All Bookings
+                </a>
+                <a class="btn btn-outline-info float-right" href="{{ path('app_booking_edit', {'id': booking.id}) }}" style="margin-right: 5px;"> 
+                    Edit Booking
+                </a>
+            </div>
+            <div class="card-body">
+            <b class="text-muted">ID:</b>
+                <p>{{ booking.id }}</p>
+                <b class="text-muted">Description:</b>
+                <p>{{ booking.bookingDescription }}</p>
+                <b class="text-muted">Booked from:</b>
+                <p>{{ booking.bookedFrom ? booking.bookedFrom|date('d-m-Y H:i:s') : '' }}</p>
+                <b class="text-muted">Booked until:</b>
+                <p>{{ booking.bookedUntil ? booking.bookedUntil|date('d-m-Y H:i:s') : ''}}</p>
+                 <b class="text-muted">Room:</b>
+                <p>{{ booking.room }}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

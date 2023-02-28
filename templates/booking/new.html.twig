@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
-
+  
 {% block title %}New Booking{% endblock %}
-
+  
 {% block body %}
-    <h1>Create new Booking</h1>
-
-    {{ include('booking/_form.html.twig') }}
-
-    <a href="{{ path('app_booking_index') }}">back to list</a>
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Create Booking</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_booking_index') }}"> 
+                    View All Bookings
+                </a>
+            </div>
+            <div class="card-body">
+                 {{ include('booking/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

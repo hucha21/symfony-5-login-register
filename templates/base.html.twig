@@ -17,7 +17,7 @@
         <script src="jquery.js"></script>
         <script src="parsley.min.js"></script>
     </head>
-    <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+    <body class="bg-gray-100 h-screen antialiased leading-none font-sans" style="min-height: 100vh;display: flex;flex-direction: column;">
             {% block header %}
                 <header>
                     <nav
@@ -118,7 +118,7 @@
             {% block body %}{% endblock %}
 
             {% block footer %}
-                <footer class="bg-blue-600 py-6 mt-20">
+                <footer class="bg-blue-600 py-6 mt-20" >
                     <p class="w-25 w-4/5 text-center pb-3 m-auto text-base text-white pt-6">
                         Copyright 2023 Husnija Hafurić
                     </p>
