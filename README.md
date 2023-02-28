@@ -14,7 +14,7 @@ Simple booking app in PHP MVC framework - Symfony.
 - Login/Register user
 - Form validation using Parsley.js
 - Booking overview using JQuery Datatables
-- creating new bookings with implemented simple constraints (room availablity, date checks..)
+- creating new bookings with implemented simple constraints (room availablity, date checks)
 - editing existing bookings
 - deleting existing bookings
 - searching for bookings

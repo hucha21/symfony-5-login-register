@@ -98,7 +98,6 @@ class BookingController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
             $bookingRepository->remove($booking, true);
         }
-
         return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
     }
 }
